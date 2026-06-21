@@ -1,20 +1,33 @@
 # Pake Workspace
 
-This workspace contains customized configuration files, CSS injections, icons, and a Makefile to build tailored macOS desktop applications using the customized `pake` CLI wrapper.
+Pakeのカスタム版を使って、macOS向けに専用のデスクトップアプリをビルドするためのワークスペースです。
+各アプリに合わせた独自スタイル（CSS）や挙動（JavaScript）を注入するための設定が含まれています。
 
-## Contents
-- `Makefile`: Commands to quickly build the applications (`make all`, `make twitter`, `make youtube`, etc.)
-- `*.css`: Custom CSS injected into the respective apps to hide ads, prompts, or specific elements (e.g., `twitter-adblock.css`).
-- `*.js`: Custom JavaScript (like `universal-tweaks.js`) injected into apps to manage viewport zooming and behavior.
-- `icons/`: Custom `.icns` files used for the macOS application bundles.
+## 準備
 
-## Building
-To build all applications:
+### 1. サブモジュールの初期化
+Pake本体のカスタムフォークをサブモジュールとして読み込んでいます。クローン後、以下のコマンドを実行してください。
+```bash
+git submodule update --init --recursive
+```
+
+### 2. アイコンの用意
+ライセンス上の理由から、アプリのアイコン画像（`.icns`）はリポジトリに含めていません。
+ビルドする前に、各自で以下のアイコンを用意して `icons/` ディレクトリに配置してください。
+
+* `icons/youtube.icns`
+* `icons/twitter.icns`
+* `icons/soundcloud.icns`
+* `icons/instagram.icns`
+
+## ビルド方法
+
+すべてのアプリを一括でビルドする場合：
 ```bash
 make all
 ```
 
-To build a specific app:
+個別にビルドする場合：
 ```bash
 make twitter
 make youtube
@@ -22,4 +35,4 @@ make soundcloud
 make instagram
 ```
 
-The resulting applications will be placed in this folder (e.g., `Twitter.app`) and automatically installed to `/Applications`.
+ビルドが完了すると、同じディレクトリ内にアプリ（例: `Twitter.app`）が生成され、自動的に `/Applications` フォルダへインストールされます。
